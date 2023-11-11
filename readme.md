@@ -42,7 +42,7 @@ Esto creará al arrancar el server estas routes y una vez levantado el server si
   - showfiles = yes		// Si queremos mostrar los ficheros cuando escribamos localhost:81/runner 
 
 - En la carpeta /html/flow hay un sencillo ejemplo de aplicación que se autentica, puede ir al menu principal y de alla a otros módulos, que si no estas autenticado te envia a la pantalla 
-de login. Todo montado con rutas y sencillos ficheros. Para poder ejecutarlo simplementa descomenta del fichero app.ini todo lo comentado relativo al ejemplo flow y arranca el servidor para que cargue la nueva configuración. Este es el flujo de la app
+de login. Todo montado con rutas y sencillos ficheros. Este es el flujo de la app
 
 ![alt text](https://github.com/carles9000/ut-runner/blob/main/doc/flow.drawio.png)
 
