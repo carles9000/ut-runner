@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+
+<div class="container">
+<h4>Table example with dbf</h4><hr>
+
+<?prg 
+#xcommand TEXT TO <var> => #pragma __stream|<var> += %s
+#xcommand HTML <o> [ PARAMS [<v1>] [,<vn>] ] ;
+=> ;
+	#pragma __cstream |<o>:Html( UInlinePrg( UReplaceBlocks( %s, '<$', "$>" [,<(v1)>][+","+<(vn)>] [, @<v1>][, @<vn>] ) ) )
+
+	local cAlias, hRow, cHtml := ''
+	local cDbf := hb_dirbase() + '/data/test.dbf'
+	
+	USE (cDbf) shared new
+	
+	cAlias := Alias()
+	
+	(cAlias)->( DbGoto( hb_randomint(1,100) ) )
+	
+	TEXT TO cHtml
+		<table border="1" class="striped highlight">
+		<tr>
+		<th>Recno</th>
+		<th>First</th>
+		<th>Last</th>
+		<th>Street</th>
+		<th>Age</th>	
+	ENDTEXT
+	
+	
+	for n := 1 to 10 
+	
+		hRow := LoadRow( cAlias )
+		
+		cHtml += '<tr>'
+		cHtml += '<td>' + str( hRow[ '_recno' ]) + '</td>'
+		cHtml += '<td>' + hRow[ 'first' ] + '</td>'
+		cHtml += '<td>' + hRow[ 'last' ] + '</td>'
+		cHtml += '<td>' + hRow[ 'street' ] + '</td>'
+		cHtml += '<td>' + str( hRow[ 'age' ] ) + '</td>'
+		cHtml += '</tr>'
+		
+		(cAlias)->( DbSkip() )
+	
+	next
+	
+	cHtml += '</table>'			
+	
+	
+retu cHtml
+
+// --------------------------------------------- //
+
+function LoadRow( cAlias )
+
+	local hRow := {'_now' => hb_milliseconds(),;
+					'_recno' => (cAlias)->( Recno() ),;
+					'first' => alltrim((cAlias)->first), ;
+					'last' => alltrim((cAlias)->last), ;
+					'street' => alltrim((cAlias)->street), ;
+					'age' => (cAlias)->age, ;
+					'married' => (cAlias)->married;
+				}
+retu hRow
+?>
+
+
+<div class="card-panel teal lighten-2">
+	<button class="btn waves-effect waves-light" onClick="window.location.reload();">	
+       Refresh Page
+    </button>
+</div>
+
+</div>
+
