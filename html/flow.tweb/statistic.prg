@@ -1,3 +1,12 @@
+/*
+	Este ejemplo es el mismo que order.prg pero con diferencias importantes
+	1.- La vista no esta "embedida", sino que carga cada vez el fichero html.
+	2.- Vemos como en el View() podemos recolectar datos para luego pasarlos al html y tratarlos
+	3.- El html siempre debera estar con la ejecucion del programa. Si esta embedido
+	    una vez se ha ejecutado y creado su hrb, se puede eliminar los fuentes para
+		el cliente.
+*/
+
 #include "lib/tweb/tweb.ch" 
 
 function Statistic()
@@ -13,34 +22,10 @@ retu View()
 
 static function View()
 
-    LOCAL o, oWeb
+	local cName 
 	
-	DEFINE WEB oWeb TITLE 'Flow'
+	USessionStart()
 	
-		NAV oNav ID 'nav' TITLE '&nbsp;My Enterprise...' LOGO 'files/images/mini-mercury.png' ;
-			ROUTE 'menu' WIDTH 30 HEIGHT 30 sidebar  BURGUERLEFT OF oWeb		//	BURGUERLEFT ,  SIDEBAR [side 'right' ]
+	cName := USession( 'credentials' )[ 'name' ]
 
-			MENU GROUP 'General' OF oNav
-			
-				MENUITEM 'Order' 	  ICON '<i class="fa fa-home" aria-hidden="true"></i>' ROUTE 'order' 	  OF oNav
-				MENUITEM 'Statistic' ICON '<i class="fa fa-list" aria-hidden="true"></i>' ROUTE 'statistic' OF oNav 
-				MENUITEM 'Logout' ICON '<i class="fa fa-times-circle" aria-hidden="true"></i>' ROUTE 'logout' 	OF oNav 
-				
-			ENDMENU OF oNav				
-
-		DEFINE FORM o OF oWeb	
-		
-			HTML o 
-				<div class="text-center">
-					<h3>Process: Statistic</h3><hr>
-					<a href="menu">Go To menu</a>
-				</div>
-			ENDTEXT
-
-		INIT FORM o
-
-		ENDFORM o	
-	
-	INIT WEB oWeb RETURN
-
-retu nil 
+retu ULoadHtml( 'flow.tweb/view_statistic.html', cName )
