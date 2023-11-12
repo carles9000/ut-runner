@@ -1,0 +1,96 @@
+<?prg
+#include "lib/tweb/tweb.ch" 
+
+    LOCAL o, oWeb
+	LOCAL hData := {=>}
+	
+	DEFINE WEB oWeb TITLE 'Flow' 					
+		
+		DEFINE FORM o ID 'myform' API 'access' OF oWeb 
+			o:lDessign := .f.			
+			o:lFluid := .t.			
+		
+		INIT FORM o 		
+
+		HTML o PARAMS hData
+		
+			<style>					
+				
+				body { 
+					background-color: transparent;
+				}
+			
+				html {
+					height:100%;
+					margin: 0;								
+					
+					background: url('files/images/photo.jpg') no-repeat center center fixed; 
+					-webkit-background-size: cover;
+					-moz-background-size: cover;
+					-o-background-size: cover;
+					background-size: cover;							
+				}
+
+				.mycontainer {
+					margin: auto;
+					margin-top: 100px;
+					margin-left: 0;
+					width:300px;
+					border: 2px solid gray;
+					border-radius: 10px;
+					box-shadow: 5px 5px 5px gray;
+					background-color:white;
+				}
+				
+				@media only screen
+				and (min-width: 320px)
+				and (max-width: 736px)
+				{			
+					.mycontainer {
+						margin-left: auto;			
+					}
+				}
+				
+				.myblock {
+					width: 250px;
+					margin: auto;
+				}
+
+			</style>
+		ENDTEXT 	
+
+		ROW o CLASS 'mycontainer'
+		
+			COL o GRID 0 CLASS 'myblock'
+				
+				ROWGROUP o	
+					SAY LABEL '<br><h3><i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;System Access</h3><hr>' ALIGN 'center' GRID 12 OF o						
+				ENDROW o						
+			
+				ROWGROUP o	HALIGN 'center'															
+					GET ID 'user'  VALUE '' GRID 12 ;
+						PLACEHOLDER 'Example: John' ;
+						LABEL '<i class="fa fa-user" aria-hidden="true"></i>&nbsp;User'  ;
+						OF o						
+				ENDROW o	
+
+				ROWGROUP o																
+					GET ID 'psw'  TYPE 'password' VALUE '' GRID 12 ;
+						PLACEHOLDER 'Example: 123' ;
+						LABEL '<i class="fa fa-unlock-alt" aria-hidden="true"></i>&nbsp;Psw.' ;
+						OF o						
+				ENDROW o	
+				
+				ROWGROUP o HALIGN 'center'																
+					BUTTON LABEL 'Login' ACTION 'login' ;
+						ICON '<i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;&nbsp;';
+						CLASS 'btn btn-outline-dark' ALIGN 'center' WIDTH '150px' GRID 12 OF o						
+				ENDROW o						
+			
+			ENDCOL o								
+			
+		ENDROW o
+
+
+	INIT WEB oWeb RETURN
+?>

@@ -37,6 +37,7 @@ Esto indica al servidor cuando arranque que verifique y compruebe estos ficheros
 Esto creará al arrancar el server estas routes y una vez levantado el server si ponemos en la url localhost:81/p1, localhost:81/p1b o simplemente localhost:81/ el servidor ya sabra que debe ejecutar
 
 ### 3.- Otros...
+
 - En el fichero app.ini podemos parametrizar tambien:
   - port = 81		      // Numero de puerto 
   - showfiles = yes		// Si queremos mostrar los ficheros cuando escribamos localhost:81/runner 
@@ -44,7 +45,13 @@ Esto creará al arrancar el server estas routes y una vez levantado el server si
 - En la carpeta /html/flow hay un sencillo ejemplo de aplicación que se autentica, puede ir al menu principal y de alla a otros módulos, que si no estas autenticado te envia a la pantalla 
 de login. Todo montado con rutas y sencillos ficheros. Este es el flujo de la app
 
-![alt text](https://github.com/carles9000/ut-runner/blob/main/doc/flow.drawio.png)
+![alt text](https://github.com/carles9000/ut-runner/blob/main/doc/flow.drawio.png) 
+
+Para poder ejecutar este ejemplo, deberas renombrar el fichero app.flow.ini a app.ini y reinicia el server.
+
+Pero existe el mismo ejemplo, preparado con TWeb. Renombra el fichero app.flow.tweb.ini a app.ini y reinicia el server.
+
+Podriamos hacer lo mismo conb cualquier otro framework, el concepto sigue funcionando para todos.
 
 
 Y la magia de todo es como rápidamente armamos un servidor y habilitando los puertos de nuestro router pueda ser visto desde internet. Todo con harbour y sin compilar nada !!!
