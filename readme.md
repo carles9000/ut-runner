@@ -56,7 +56,7 @@ Pero existe el mismo ejemplo, preparado con TWeb. Renombra el fichero app.flow.t
 Podriamos hacer lo mismo con cualquier otro framework, el concepto sigue funcionando para todos.
 
 
-Y la magia de todo es como rápidamente armamos un servidor con nuestra aplicacion web y habilitando los puertos de nuestro router pueda ser visto desde internet. Todo con harbour y sin compilar nada !!!
+Y la magia de todo es como rápidamente armamos un servidor web con nuestra aplicacion y habilitando los puertos de nuestro router pueda ser visto desde internet. Todo con harbour y sin compilar nada !!!
 
 Esto es todo ! 
 
