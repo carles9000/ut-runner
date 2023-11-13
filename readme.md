@@ -37,6 +37,9 @@ Esto indica al servidor que cuando arranque verifique y compruebe estos ficheros
    
 Esto creará al arrancar el server estas rutas y una vez levantado el server si ponemos en la url localhost:81/p1, localhost:81/p1b o simplemente localhost:81/ el servidor ya sabrá que debe ejecutar
 
+Importante. El servidor al arrancar busca,compila,carga,asigna rutas,... Cualquier cambio en los fuentes solo tendrá efecto al reiniciar el server. 
+Hay la utilizad \bin\dbgview.exe que nos mostrará cuando arranquemos el servidor todo lo que esta ejecutando.
+
 ### 3.- Otros...
 
 - En el fichero app.ini podemos parametrizar tambien:
